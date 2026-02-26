@@ -1,9 +1,101 @@
 'use client'
 
-export default function Hero() {
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { useMousePosition } from '@/hooks/useMousePosition'
+
+function MagneticButton({ children, className }: { children: React.ReactNode; className: string }) {
+  const ref = useRef<HTMLButtonElement>(null)
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const distX = e.clientX - centerX
+    const distY = e.clientY - centerY
+    setOffset({ x: distX * 0.25, y: distY * 0.25 })
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    setOffset({ x: 0, y: 0 })
+  }, [])
+
   return (
-    <section className="w-full min-h-screen bg-primary-dark flex items-center justify-center relative overflow-hidden bg-mesh">
-      <div className="max-w-7xl mx-auto w-full px-4 md:px-8 py-20">
+    <div onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="inline-block p-4 -m-4">
+      <button
+        ref={ref}
+        className={className}
+        style={{
+          transform: `translate(${offset.x}px, ${offset.y}px)`,
+          transition: offset.x === 0 && offset.y === 0
+            ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+            : 'transform 0.15s ease-out',
+        }}
+      >
+        {children}
+      </button>
+    </div>
+  )
+}
+
+export default function Hero() {
+  const mouse = useMousePosition()
+  const [dimensions, setDimensions] = useState({ w: 0, h: 0 })
+  const [displayedText, setDisplayedText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
+
+  const tagline = 'Exploring AI, Policy and Finance | IIM Indore'
+
+  useEffect(() => {
+    setDimensions({ w: window.innerWidth, h: window.innerHeight })
+  }, [])
+
+  useEffect(() => {
+    let intervalId: ReturnType<typeof setInterval> | undefined
+    const timeoutId = setTimeout(() => {
+      let index = 0
+      intervalId = setInterval(() => {
+        if (index < tagline.length) {
+          setDisplayedText(tagline.slice(0, index + 1))
+          index++
+        } else {
+          setIsTypingComplete(true)
+          if (intervalId) clearInterval(intervalId)
+        }
+      }, 55)
+    }, 1000)
+    return () => {
+      clearTimeout(timeoutId)
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [])
+
+  const cx = dimensions.w / 2
+  const cy = dimensions.h / 2
+
+  return (
+    <section className="w-full min-h-screen bg-primary-dark flex items-center justify-center relative overflow-hidden">
+      {/* Dot grid background */}
+      <div className="dot-grid" />
+      {/* Mesh gradient overlay for depth */}
+      <div className="absolute inset-0 bg-mesh pointer-events-none" />
+
+      {/* Parallax depth layers */}
+      <div
+        className="absolute top-[15%] right-[10%] w-40 h-40 rounded-full parallax-orb-1"
+        style={{ transform: `translate(${(mouse.x - cx) * 0.03}px, ${(mouse.y - cy) * 0.03}px)` }}
+      />
+      <div
+        className="absolute bottom-[20%] left-[8%] w-24 h-24 parallax-orb-2"
+        style={{ transform: `translate(${(mouse.x - cx) * 0.05}px, ${(mouse.y - cy) * 0.05}px)` }}
+      />
+      <div
+        className="absolute top-[40%] left-[20%] w-32 h-32 parallax-orb-3"
+        style={{ transform: `translate(${(mouse.x - cx) * 0.015}px, ${(mouse.y - cy) * 0.015}px)` }}
+      />
+
+      <div className="max-w-7xl mx-auto w-full px-4 md:px-8 py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <div className="flex flex-col justify-center space-y-8">
@@ -11,11 +103,12 @@ export default function Hero() {
               <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4 hero-slide-in">
                 Tanish
               </h1>
-              <h2 className="text-3xl md:text-4xl font-serif text-accent mb-4 hero-slide-in-delay-1 accent-glow">
+              <h2 className="text-3xl md:text-4xl font-serif text-gradient-animated mb-4 hero-slide-in-delay-1">
                 Chaudhary
               </h2>
-              <p className="text-xl text-gray-300 hero-slide-in-delay-2">
-                Exploring AI, Policy and Finance | IIM Indore
+              <p className="text-xl text-gray-300 hero-slide-in-delay-2 min-h-[1.75rem]">
+                <span>{displayedText}</span>
+                <span className={`typewriter-cursor ${isTypingComplete ? 'typewriter-cursor-blink' : ''}`} />
               </p>
             </div>
 
@@ -25,12 +118,12 @@ export default function Hero() {
             </p>
 
             <div className="flex gap-4 flex-wrap hero-slide-in-delay-4">
-              <button className="btn-primary px-8 py-3 bg-accent text-primary-dark font-semibold rounded-lg">
+              <MagneticButton className="btn-primary px-8 py-3 bg-accent text-primary-dark font-semibold rounded-lg">
                 View Resume
-              </button>
-              <button className="btn-secondary px-8 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-primary-dark">
+              </MagneticButton>
+              <MagneticButton className="btn-secondary px-8 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-primary-dark">
                 Contact
-              </button>
+              </MagneticButton>
             </div>
           </div>
 

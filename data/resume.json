@@ -26,22 +26,22 @@
   ],
   "skills": {
     "technical": [
-      "Python",
-      "SQL",
-      "Excel",
-      "Tableau",
-      "R",
-      "JavaScript",
-      "React",
-      "Next.js"
+      { "name": "Python", "proficiency": 90 },
+      { "name": "SQL", "proficiency": 85 },
+      { "name": "Excel", "proficiency": 95 },
+      { "name": "Tableau", "proficiency": 80 },
+      { "name": "R", "proficiency": 70 },
+      { "name": "JavaScript", "proficiency": 75 },
+      { "name": "React", "proficiency": 80 },
+      { "name": "Next.js", "proficiency": 75 }
     ],
     "soft": [
-      "Leadership",
-      "Strategic Thinking",
-      "Communication",
-      "Negotiation",
-      "Problem Solving",
-      "Data Analysis"
+      { "name": "Leadership", "proficiency": 90 },
+      { "name": "Strategic Thinking", "proficiency": 95 },
+      { "name": "Communication", "proficiency": 90 },
+      { "name": "Negotiation", "proficiency": 85 },
+      { "name": "Problem Solving", "proficiency": 92 },
+      { "name": "Data Analysis", "proficiency": 88 }
     ]
   },
   "leadership": [

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import CursorSpotlight from '@/components/CursorSpotlight'
 
 const metadata: Metadata = {
   title: 'Tanish Chaudhary - Personal Portfolio',
@@ -24,7 +25,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="bg-primary-dark text-white min-h-screen">
+      <body className="bg-primary-dark text-white min-h-screen noise-overlay">
+        <CursorSpotlight />
         {children}
       </body>
     </html>

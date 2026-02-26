@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import RevealOnScroll from '@/components/RevealOnScroll'
 
 const portfolioItems = [
   {
@@ -52,33 +53,37 @@ export default function PortfolioShowcaseTab() {
 
   return (
     <div>
-      <h2 className="text-3xl font-serif font-bold text-accent mb-8 accent-glow stagger-item stagger-delay-0">
-        Portfolio Showcase
-      </h2>
+      <RevealOnScroll>
+        <h2 className="text-3xl font-serif font-bold text-gradient-animated mb-8">
+          Portfolio Showcase
+        </h2>
+      </RevealOnScroll>
 
       {/* Filter buttons */}
-      <div className="flex flex-wrap gap-3 mb-12 stagger-item stagger-delay-1">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveFilter(category)}
-            className={`filter-btn px-6 py-2 rounded-full font-medium ${
-              activeFilter === category
-                ? 'bg-accent text-primary-dark filter-btn-active'
-                : 'bg-primary-main border border-primary-light/60 text-white hover:border-accent/70 hover:text-accent'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <RevealOnScroll delay={100}>
+        <div className="flex flex-wrap gap-3 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`filter-btn px-6 py-2 rounded-full font-medium ${
+                activeFilter === category
+                  ? 'bg-accent text-primary-dark filter-btn-active'
+                  : 'bg-primary-main border border-primary-light/60 text-white hover:border-accent/70 hover:text-accent'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </RevealOnScroll>
 
       {/* Portfolio grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredItems.map((item, index) => (
           <div
             key={item.id}
-            className="portfolio-item-enter card-hover card-gradient-overlay group bg-primary-main rounded-lg p-6 border border-primary-light/60 hover:border-accent/70"
+            className="portfolio-item-enter card-gradient-overlay group glass-card rounded-lg p-6"
             style={{ animationDelay: `${index * 80}ms` }}
           >
             <div className="mb-4">
@@ -92,6 +97,15 @@ export default function PortfolioShowcaseTab() {
             <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
               {item.description}
             </p>
+
+            {/* Reveal on hover */}
+            <div className="card-reveal-divider mt-4" />
+            <div className="card-reveal-content">
+              <div className="pt-4 flex items-center justify-between">
+                <span className="text-xs text-gray-500 uppercase tracking-wider">View Details</span>
+                <span className="text-accent text-sm">&rarr;</span>
+              </div>
+            </div>
           </div>
         ))}
       </div>

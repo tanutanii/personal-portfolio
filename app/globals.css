@@ -481,3 +481,370 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #D2C1B6;
   transform: translateY(-1px);
 }
+
+/* ====================================================
+   PREMIUM ENHANCEMENTS — 15 Visual Effects
+   ==================================================== */
+
+/* ===== 1. Cursor Spotlight ===== */
+:root {
+  --cursor-x: 50%;
+  --cursor-y: 50%;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--cursor-x) var(--cursor-y),
+    rgba(210, 193, 182, 0.04) 0%,
+    rgba(69, 104, 130, 0.02) 25%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 9999;
+  transition: background 0.15s ease;
+}
+
+/* ===== 2. Noise Texture Overlay ===== */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== 3. Animated Dot Grid ===== */
+@keyframes dot-drift {
+  0%, 100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 12px 12px;
+  }
+}
+
+@keyframes dot-pulse-wave {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(210, 193, 182, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  animation: dot-drift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dot-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(210, 193, 182, 0.06) 0%,
+    transparent 50%
+  );
+  animation: dot-pulse-wave 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ===== 4. Typewriter ===== */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #D2C1B6;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+.typewriter-cursor-blink {
+  animation: blink-cursor 0.8s ease-in-out infinite;
+}
+
+/* ===== 5. Parallax Depth Orbs ===== */
+.parallax-orb-1 {
+  background: radial-gradient(circle, rgba(210, 193, 182, 0.06) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+
+.parallax-orb-2 {
+  background: radial-gradient(circle, rgba(69, 104, 130, 0.1) 0%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  transition: transform 0.3s ease-out;
+}
+
+.parallax-orb-3 {
+  background: radial-gradient(circle, rgba(210, 193, 182, 0.04) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+
+/* ===== 7. 3D Tilt Card ===== */
+.tilt-card {
+  will-change: transform;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* ===== 8. Glassmorphism ===== */
+.glass-card {
+  background: rgba(35, 76, 106, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(210, 193, 182, 0.1);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(210, 193, 182, 0.05);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card:hover {
+  background: rgba(35, 76, 106, 0.55);
+  border-color: rgba(210, 193, 182, 0.2);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(210, 193, 182, 0.08);
+  transform: translateY(-4px);
+}
+
+/* ===== 9. Scroll Reveal ===== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== 10. Vertical Timeline ===== */
+@keyframes timeline-line-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes timeline-dot-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(210, 193, 182, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(210, 193, 182, 0);
+  }
+}
+
+.timeline-container {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(210, 193, 182, 0.3) 10%,
+    rgba(210, 193, 182, 0.3) 90%,
+    transparent
+  );
+  transform-origin: top;
+  animation: timeline-line-grow 1.5s ease-out both;
+}
+
+@media (min-width: 768px) {
+  .timeline-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #D2C1B6;
+  border: 3px solid #1B3C53;
+  animation: timeline-dot-pulse 3s ease-in-out infinite;
+  position: absolute;
+  left: 14px;
+  top: 1.5rem;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .timeline-dot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .timeline-item {
+    padding-left: 0;
+  }
+
+  .timeline-item:nth-child(odd) {
+    padding-right: calc(50% + 2rem);
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-dot {
+    right: auto;
+  }
+
+  .timeline-item:nth-child(even) {
+    padding-left: calc(50% + 2rem);
+  }
+
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item:nth-child(odd) ul {
+    list-style-position: inside;
+  }
+}
+
+/* ===== 11. Skill Bar Fill ===== */
+.skill-bar-fill {
+  background: linear-gradient(
+    90deg,
+    #D2C1B6,
+    #e8ddd6,
+    #D2C1B6
+  );
+  background-size: 200% 100%;
+  animation: gradient-shift 3s ease infinite;
+  box-shadow: 0 0 8px rgba(210, 193, 182, 0.3);
+}
+
+/* ===== 12. Card Reveal ===== */
+.card-reveal-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.4s ease 0.1s;
+}
+
+.group:hover .card-reveal-content {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.card-reveal-divider {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(210, 193, 182, 0.3), transparent);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.group:hover .card-reveal-divider {
+  width: 100%;
+}
+
+/* ===== 13. Animated Text Gradient ===== */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(
+    270deg,
+    #D2C1B6,
+    #e8ddd6,
+    #D2C1B6,
+    #b8a89c,
+    #D2C1B6
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* ===== 14. Directional Tab Transitions ===== */
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tab-slide-left {
+  animation: slide-in-from-right 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tab-slide-right {
+  animation: slide-in-from-left 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ===== 15. Wave Divider ===== */
+.wave-divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  line-height: 0;
+  transform: translateY(-100%);
+}
