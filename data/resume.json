@@ -1,0 +1,56 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "institution": "Indian Institute of Management (IIM) Indore",
+      "degree": "MBA in Business Administration",
+      "period": "2022 - 2024",
+      "details": [
+        "Focus on Finance, Strategy, and AI"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "company": "Edelman Intelligence",
+      "position": "Senior Consultant",
+      "period": "2021 - 2022",
+      "description": "Led market entry strategy analysis for Fortune 500 clients",
+      "highlights": [
+        "Led market entry strategy analysis for Fortune 500 clients",
+        "Conducted competitive intelligence across 8+ markets",
+        "Developed pricing strategies for B2B SaaS companies"
+      ]
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Tableau",
+      "R",
+      "JavaScript",
+      "React",
+      "Next.js"
+    ],
+    "soft": [
+      "Leadership",
+      "Strategic Thinking",
+      "Communication",
+      "Negotiation",
+      "Problem Solving",
+      "Data Analysis"
+    ]
+  },
+  "leadership": [
+    {
+      "id": 1,
+      "role": "President",
+      "organization": "Investment Club, IIM Indore",
+      "period": "2023 - 2024",
+      "description": "Managed investment portfolio and organized quarterly case competitions"
+    }
+  ]
+}

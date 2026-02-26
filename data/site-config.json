@@ -1,19 +1,21 @@
 {
   "name": "Tanish Chaudhary",
   "tagline": "Exploring AI, Policy and Finance | IIM Indore",
-  "email": "tanish@example.com",
+  "description": "PE/VC focused analyst passionate about AI applications in finance and policy. Building conviction through data-driven insights and strategic thinking.",
+  "email": "tanishhchaudhary@gmail.com",
+  "phone": "+91 9818928655",
   "social": [
     {
       "name": "LinkedIn",
-      "url": "https://linkedin.com/in/tanish-chaudhary"
+      "url": "https://www.linkedin.com/in/tanish-chaudhary-1750741b3/"
     },
     {
       "name": "Twitter",
-      "url": "https://twitter.com/tanish"
+      "url": "https://x.com/tanutaniii"
     },
     {
       "name": "GitHub",
-      "url": "https://github.com/tanish"
+      "url": "https://github.com/tanutanii"
     }
   ]
 }
