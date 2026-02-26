@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "AI in Healthcare",
+    "category": "AI",
+    "description": "In-depth analysis of AI applications revolutionizing healthcare industry"
+  },
+  {
+    "id": 2,
+    "title": "Process Automation ROI",
+    "category": "Automation",
+    "description": "Case study examining automation benefits and implementation strategies"
+  },
+  {
+    "id": 3,
+    "title": "Portfolio Website",
+    "category": "Website",
+    "description": "Personal portfolio site built with Next.js showcasing skills and projects"
+  },
+  {
+    "id": 4,
+    "title": "Brand Identity Design",
+    "category": "Design",
+    "description": "Logo and visual identity design for emerging startups"
+  },
+  {
+    "id": 5,
+    "title": "Company Explainer Video",
+    "category": "Video",
+    "description": "Animated explainer video for SaaS product launch campaign"
+  },
+  {
+    "id": 6,
+    "title": "Industry Insights Blog",
+    "category": "Posts",
+    "description": "Series of long-form articles on AI, finance, and policy trends"
+  }
+]

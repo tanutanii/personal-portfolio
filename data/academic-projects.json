@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Market Entry Strategy Analysis",
+    "description": "Strategic analysis of market entry opportunities for emerging markets using competitive intelligence framework and data-driven insights.",
+    "technologies": ["Research", "Analytics", "Strategy", "Competitive Analysis"]
+  },
+  {
+    "id": 2,
+    "title": "AI Governance Framework",
+    "description": "Developed comprehensive policy recommendations for AI regulation across different sectors including healthcare, finance, and e-commerce.",
+    "technologies": ["Policy", "AI", "Governance", "Research"]
+  },
+  {
+    "id": 3,
+    "title": "Predictive Analytics Model",
+    "description": "Built machine learning model for financial forecasting with 85% accuracy rate using historical market data and advanced algorithms.",
+    "technologies": ["Python", "Machine Learning", "Finance", "Data Science"]
+  }
+]

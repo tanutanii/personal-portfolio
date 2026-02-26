@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Crochet by Arsh",
+    "description": "E-commerce platform for handmade crochet products with payment integration, inventory management, and order tracking system.",
+    "technologies": ["Next.js", "React", "Stripe", "MongoDB", "TailwindCSS"],
+    "link": "https://crochetbyarsh.com"
+  },
+  {
+    "id": 2,
+    "title": "Content Publishing Automation",
+    "description": "Developed automation system for content distribution across multiple platforms including Twitter, LinkedIn, and Substack simultaneously.",
+    "technologies": ["Python", "APIs", "Automation", "Scheduling", "Data Processing"],
+    "link": ""
+  }
+]
