@@ -1,3 +1,5 @@
+'use client'
+
 import ProjectCard from '@/components/ProjectCard'
 
 const academicProjects = [
@@ -24,15 +26,18 @@ const academicProjects = [
 export default function AcademicProjectsTab() {
   return (
     <div>
-      <h2 className="text-3xl font-serif font-bold text-accent mb-12">Academic Projects</h2>
+      <h2 className="text-3xl font-serif font-bold text-accent mb-12 accent-glow stagger-item stagger-delay-0">
+        Academic Projects
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {academicProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            technologies={project.technologies}
-          />
+        {academicProjects.map((project, index) => (
+          <div key={project.id} className={`stagger-item stagger-delay-${index + 1}`}>
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              technologies={project.technologies}
+            />
+          </div>
         ))}
       </div>
     </div>

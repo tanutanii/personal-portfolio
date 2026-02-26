@@ -12,16 +12,19 @@ export default function ProjectCard({
   link,
 }: ProjectCardProps) {
   return (
-    <div className="group bg-primary-main rounded-lg overflow-hidden border border-primary-light hover:border-accent transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
+    <div className="group card-hover card-gradient-overlay bg-primary-main rounded-lg overflow-hidden border border-primary-light/60 hover:border-accent/70">
       {/* Preview area with gradient */}
-      <div className="h-40 bg-gradient-to-br from-primary-light to-primary-dark"></div>
+      <div className="h-40 bg-gradient-to-br from-primary-light/80 to-primary-dark relative overflow-hidden">
+        {/* Subtle animated gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-accent/0 via-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:via-accent/10 group-hover:to-transparent transition-all duration-500" />
+      </div>
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-serif font-bold text-white mb-3 group-hover:text-accent transition-colors">
+        <h3 className="text-xl font-serif font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-gray-300 mb-4 line-clamp-2">
+        <p className="text-gray-300 mb-4 line-clamp-2 group-hover:text-gray-200 transition-colors duration-300">
           {description}
         </p>
 
@@ -30,7 +33,7 @@ export default function ProjectCard({
           {technologies.map((tech, index) => (
             <span
               key={index}
-              className="text-xs px-3 py-1 bg-primary-dark text-accent rounded-full border border-primary-light"
+              className="tag-glow text-xs px-3 py-1 bg-primary-dark text-accent rounded-full border border-primary-light/60"
             >
               {tech}
             </span>
@@ -43,9 +46,10 @@ export default function ProjectCard({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-accent hover:underline font-medium"
+            className="inline-flex items-center gap-1 text-accent font-medium transition-all duration-300 hover:gap-2"
           >
-            View Project →
+            View Project
+            <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
           </a>
         )}
       </div>

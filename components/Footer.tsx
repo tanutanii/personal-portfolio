@@ -1,11 +1,11 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-primary-dark border-t border-primary-light">
+    <footer className="w-full bg-primary-dark border-t border-primary-light/40">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-serif font-bold text-accent mb-2">
+            <h3 className="text-2xl font-serif font-bold text-accent mb-2 accent-glow">
               Tanish Chaudhary
             </h3>
             <p className="text-gray-400">
@@ -17,10 +17,10 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-serif font-bold text-white mb-4">Links</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-accent transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Twitter</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">GitHub</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Email</a></li>
+              <li><a href="#" className="footer-link hover:text-accent">LinkedIn</a></li>
+              <li><a href="#" className="footer-link hover:text-accent">Twitter</a></li>
+              <li><a href="#" className="footer-link hover:text-accent">GitHub</a></li>
+              <li><a href="#" className="footer-link hover:text-accent">Email</a></li>
             </ul>
           </div>
 
@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-serif font-bold text-white mb-4">Contact</h4>
             <p className="text-gray-400 mb-2">
-              <a href="mailto:tanish@example.com" className="hover:text-accent transition-colors">
+              <a href="mailto:tanish@example.com" className="footer-link hover:text-accent">
                 tanish@example.com
               </a>
             </p>
@@ -38,7 +38,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-light mt-12 pt-8 text-center text-gray-500">
+        {/* Divider with glow */}
+        <div className="divider-glow mt-12 mb-8" />
+
+        <div className="text-center text-gray-500">
           <p>&copy; 2024 Tanish Chaudhary. All rights reserved.</p>
         </div>
       </div>

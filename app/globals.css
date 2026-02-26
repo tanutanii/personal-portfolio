@@ -42,6 +42,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #D2C1B6;
 }
 
+/* ===== Avatar Ring Animation ===== */
 @keyframes avatar-ring {
   from {
     transform: rotate(0deg);
@@ -55,10 +56,117 @@ h1, h2, h3, h4, h5, h6 {
   animation: avatar-ring 8s linear infinite;
 }
 
-.avatar-ring-hover:hover {
+.avatar-ring:hover {
   animation-duration: 4s;
 }
 
+/* ===== Avatar Float Animation ===== */
+@keyframes avatar-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.avatar-float {
+  animation: avatar-float 4s ease-in-out infinite;
+}
+
+/* ===== Avatar Glow Pulse ===== */
+@keyframes avatar-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(210, 193, 182, 0.15),
+      0 0 40px rgba(210, 193, 182, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(210, 193, 182, 0.25),
+      0 0 60px rgba(210, 193, 182, 0.12);
+  }
+}
+
+.avatar-glow {
+  animation: avatar-glow 4s ease-in-out infinite;
+}
+
+/* ===== Shimmer Ring Gradient ===== */
+@keyframes shimmer-ring {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.shimmer-ring {
+  background: linear-gradient(
+    270deg,
+    #d2c1b6,
+    #456882,
+    #d2c1b6,
+    #234c6a,
+    #d2c1b6
+  );
+  background-size: 400% 400%;
+  animation: shimmer-ring 6s ease infinite;
+}
+
+/* ===== Geometric Accent Animations ===== */
+@keyframes geo-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes geo-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes geo-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(4px, -6px) rotate(3deg);
+  }
+  50% {
+    transform: translate(-2px, -10px) rotate(-2deg);
+  }
+  75% {
+    transform: translate(-6px, -4px) rotate(1deg);
+  }
+}
+
+.geo-rotate {
+  animation: geo-rotate 20s linear infinite;
+}
+
+.geo-pulse {
+  animation: geo-pulse 5s ease-in-out infinite;
+}
+
+.geo-drift {
+  animation: geo-drift 8s ease-in-out infinite;
+}
+
+/* ===== Fade In Animations ===== */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -70,4 +178,306 @@ h1, h2, h3, h4, h5, h6 {
 
 .fade-in {
   animation: fade-in 0.6s ease-in-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.5s ease-out both;
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-scale {
+  animation: fade-in-scale 0.4s ease-out both;
+}
+
+/* ===== Hero Text Stagger ===== */
+@keyframes hero-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-slide-in {
+  animation: hero-slide-in 0.7s ease-out both;
+}
+
+.hero-slide-in-delay-1 {
+  animation: hero-slide-in 0.7s ease-out 0.15s both;
+}
+
+.hero-slide-in-delay-2 {
+  animation: hero-slide-in 0.7s ease-out 0.3s both;
+}
+
+.hero-slide-in-delay-3 {
+  animation: hero-slide-in 0.7s ease-out 0.45s both;
+}
+
+.hero-slide-in-delay-4 {
+  animation: hero-slide-in 0.7s ease-out 0.6s both;
+}
+
+/* ===== Tab Underline Glide ===== */
+@keyframes tab-underline-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ===== Tab Content Transition ===== */
+@keyframes tab-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content-enter {
+  animation: tab-content-enter 0.45s ease-out both;
+}
+
+/* ===== Staggered Item Animation ===== */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-item {
+  opacity: 0;
+  animation: stagger-in 0.5s ease-out both;
+}
+
+.stagger-delay-0 { animation-delay: 0ms; }
+.stagger-delay-1 { animation-delay: 80ms; }
+.stagger-delay-2 { animation-delay: 160ms; }
+.stagger-delay-3 { animation-delay: 240ms; }
+.stagger-delay-4 { animation-delay: 320ms; }
+.stagger-delay-5 { animation-delay: 400ms; }
+.stagger-delay-6 { animation-delay: 480ms; }
+.stagger-delay-7 { animation-delay: 560ms; }
+
+/* ===== Card Hover Effects ===== */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(210, 193, 182, 0.15);
+}
+
+/* ===== Card Gradient Overlay ===== */
+.card-gradient-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-gradient-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(210, 193, 182, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-gradient-overlay:hover::after {
+  opacity: 1;
+}
+
+/* ===== Button Enhanced Hover ===== */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(210, 193, 182, 0.2);
+}
+
+.btn-secondary {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(210, 193, 182, 0.15);
+}
+
+/* ===== Filter Button Animation ===== */
+.filter-btn {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filter-btn-active {
+  box-shadow: 0 4px 16px rgba(210, 193, 182, 0.25);
+}
+
+/* ===== Portfolio Item Transition ===== */
+@keyframes portfolio-item-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.portfolio-item-enter {
+  animation: portfolio-item-in 0.4s ease-out both;
+}
+
+/* ===== Category Tag Glow ===== */
+.tag-glow {
+  transition: all 0.3s ease;
+}
+
+.tag-glow:hover {
+  box-shadow: 0 0 12px rgba(210, 193, 182, 0.2);
+  border-color: #D2C1B6;
+}
+
+/* ===== Footer Link Hover ===== */
+.footer-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #D2C1B6;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* ===== Accent Glow Effect ===== */
+.accent-glow {
+  text-shadow: 0 0 20px rgba(210, 193, 182, 0.3);
+}
+
+/* ===== Background Mesh Gradient ===== */
+.bg-mesh {
+  background-image:
+    radial-gradient(at 20% 80%, rgba(69, 104, 130, 0.15) 0%, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(210, 193, 182, 0.08) 0%, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(35, 76, 106, 0.1) 0%, transparent 60%);
+}
+
+/* ===== Scroll Indicator Fade ===== */
+@keyframes scroll-fade {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(6px);
+  }
+}
+
+.scroll-indicator {
+  animation: scroll-fade 2s ease-in-out infinite;
+}
+
+/* ===== Section Divider Glow ===== */
+.divider-glow {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(210, 193, 182, 0.3),
+    transparent
+  );
+  height: 1px;
+}
+
+/* ===== Skill Tag Hover ===== */
+.skill-tag {
+  transition: all 0.25s ease;
+}
+
+.skill-tag:hover {
+  background-color: rgba(210, 193, 182, 0.1);
+  border-color: #D2C1B6;
+  transform: translateY(-1px);
 }

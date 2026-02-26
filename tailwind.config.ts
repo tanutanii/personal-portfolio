@@ -19,6 +19,15 @@ const config: Config = {
         serif: ['Playfair Display', 'serif'],
         sans: ['Poppins', 'sans-serif'],
       },
+      keyframes: {
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+      },
+      animation: {
+        'float': 'float 4s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

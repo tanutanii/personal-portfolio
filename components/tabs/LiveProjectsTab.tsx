@@ -1,3 +1,5 @@
+'use client'
+
 import ProjectCard from '@/components/ProjectCard'
 
 const liveProjects = [
@@ -20,16 +22,19 @@ const liveProjects = [
 export default function LiveProjectsTab() {
   return (
     <div>
-      <h2 className="text-3xl font-serif font-bold text-accent mb-12">Live Projects</h2>
+      <h2 className="text-3xl font-serif font-bold text-accent mb-12 accent-glow stagger-item stagger-delay-0">
+        Live Projects
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {liveProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            technologies={project.technologies}
-            link={project.link}
-          />
+        {liveProjects.map((project, index) => (
+          <div key={project.id} className={`stagger-item stagger-delay-${index + 1}`}>
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              technologies={project.technologies}
+              link={project.link}
+            />
+          </div>
         ))}
       </div>
     </div>
