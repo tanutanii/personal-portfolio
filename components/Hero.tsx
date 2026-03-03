@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import { useMousePosition } from '@/hooks/useMousePosition'
 
 function MagneticButton({ children, className }: { children: React.ReactNode; className: string }) {
@@ -138,13 +139,19 @@ export default function Hero() {
                 className="absolute inset-0 rounded-full avatar-ring shimmer-ring"
                 style={{ padding: '4px' }}
               >
-                {/* Inner circle with placeholder */}
-                <div className="w-full h-full rounded-full bg-primary-dark flex items-center justify-center text-4xl md:text-5xl font-serif text-accent relative"
+                {/* Inner circle with profile image */}
+                <div className="w-full h-full rounded-full bg-primary-dark flex items-center justify-center overflow-hidden relative"
                   style={{
                     boxShadow: 'inset 0 -4px 12px rgba(0,0,0,0.3), inset 0 4px 12px rgba(210,193,182,0.08)',
                   }}
                 >
-                  TC
+                  <Image
+                    src="/images/profile.jpg.jpeg"
+                    alt="Tanish Chaudhary"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </div>
 
