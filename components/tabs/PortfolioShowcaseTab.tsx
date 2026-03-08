@@ -3,8 +3,17 @@
 import portfolioShowcaseData from '@/data/portfolio-showcase.json'
 import RevealOnScroll from '@/components/RevealOnScroll'
 
+interface PortfolioItem {
+  id: number
+  title: string
+  category: string
+  description: string
+}
+
 export default function PortfolioShowcaseTab() {
-  if (portfolioShowcaseData.length === 0) {
+  const typedPortfolioData = portfolioShowcaseData as PortfolioItem[]
+
+  if (typedPortfolioData.length === 0) {
     return (
       <div>
         <RevealOnScroll>
@@ -32,7 +41,7 @@ export default function PortfolioShowcaseTab() {
       </RevealOnScroll>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {portfolioShowcaseData.map((item, index) => (
+        {typedPortfolioData.map((item, index) => (
           <div
             key={item.id}
             className="portfolio-item-enter card-gradient-overlay group glass-card p-5"
