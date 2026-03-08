@@ -17,17 +17,18 @@ const config: Config = {
         accent: '#D2C1B6',
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Poppins', 'sans-serif'],
+        serif: ['Outfit', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       keyframes: {
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
       },
       animation: {
-        'float': 'float 4s ease-in-out infinite',
+        'float': 'float 5s ease-in-out infinite',
       },
     },
   },

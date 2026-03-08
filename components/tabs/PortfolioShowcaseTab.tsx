@@ -54,22 +54,24 @@ export default function PortfolioShowcaseTab() {
   return (
     <div>
       <RevealOnScroll>
-        <h2 className="text-3xl font-serif font-bold text-gradient-animated mb-8">
-          Portfolio Showcase
-        </h2>
+        <div className="section-header">
+          <span className="section-index">01</span>
+          <h2 className="section-title">Portfolio Showcase</h2>
+          <div className="section-line" />
+        </div>
       </RevealOnScroll>
 
-      {/* Filter buttons */}
+      {/* Filter buttons - tech style */}
       <RevealOnScroll delay={100}>
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 mb-10">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`filter-btn px-6 py-2 rounded-full font-medium ${
+              className={`filter-btn px-4 py-1.5 ${
                 activeFilter === category
                   ? 'bg-accent text-primary-dark filter-btn-active'
-                  : 'bg-primary-main border border-primary-light/60 text-white hover:border-accent/70 hover:text-accent'
+                  : 'bg-transparent border border-primary-light/30 text-gray-400 hover:border-accent/50 hover:text-accent'
               }`}
             >
               {category}
@@ -79,30 +81,33 @@ export default function PortfolioShowcaseTab() {
       </RevealOnScroll>
 
       {/* Portfolio grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredItems.map((item, index) => (
           <div
             key={item.id}
-            className="portfolio-item-enter card-gradient-overlay group glass-card rounded-lg p-6"
-            style={{ animationDelay: `${index * 80}ms` }}
+            className="portfolio-item-enter card-gradient-overlay group glass-card p-5"
+            style={{ animationDelay: `${index * 60}ms` }}
           >
-            <div className="mb-4">
-              <span className="tag-glow text-xs bg-primary-dark text-accent px-3 py-1 rounded-full border border-primary-light/60 inline-block">
+            {/* Index number */}
+            <div className="card-number">{String(index + 1).padStart(2, '0')}</div>
+
+            <div className="mb-3">
+              <span className="tech-tag inline-block">
                 {item.category}
               </span>
             </div>
-            <h3 className="text-lg font-serif font-bold text-white mb-2 group-hover:text-accent transition-colors duration-300">
+            <h3 className="text-base font-semibold text-white mb-2 group-hover:text-accent transition-colors duration-300 tracking-tight">
               {item.title}
             </h3>
-            <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+            <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
               {item.description}
             </p>
 
             {/* Reveal on hover */}
             <div className="card-reveal-divider mt-4" />
             <div className="card-reveal-content">
-              <div className="pt-4 flex items-center justify-between">
-                <span className="text-xs text-gray-500 uppercase tracking-wider">View Details</span>
+              <div className="pt-3 flex items-center justify-between">
+                <span className="text-xs font-mono text-gray-500 uppercase tracking-wider">View Details</span>
                 <span className="text-accent text-sm">&rarr;</span>
               </div>
             </div>

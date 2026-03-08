@@ -24,11 +24,13 @@ export default function LiveProjectsTab() {
   return (
     <div>
       <RevealOnScroll>
-        <h2 className="text-3xl font-serif font-bold text-gradient-animated mb-12">
-          Live Projects
-        </h2>
+        <div className="section-header">
+          <span className="section-index">01</span>
+          <h2 className="section-title">Live Projects</h2>
+          <div className="section-line" />
+        </div>
       </RevealOnScroll>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {liveProjects.map((project, index) => (
           <RevealOnScroll key={project.id} delay={index * 100}>
             <ProjectCard
@@ -36,6 +38,7 @@ export default function LiveProjectsTab() {
               description={project.description}
               technologies={project.technologies}
               link={project.link}
+              index={index}
             />
           </RevealOnScroll>
         ))}
