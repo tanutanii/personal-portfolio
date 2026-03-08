@@ -1,28 +1,7 @@
 'use client'
 
-import ProjectCard from '@/components/ProjectCard'
+import academicProjectsData from '@/data/academic-projects.json'
 import RevealOnScroll from '@/components/RevealOnScroll'
-
-const academicProjects = [
-  {
-    id: 1,
-    title: 'Market Entry Strategy Analysis',
-    description: 'Strategic analysis of market entry opportunities for emerging markets using competitive intelligence.',
-    technologies: ['Research', 'Analytics', 'Strategy'],
-  },
-  {
-    id: 2,
-    title: 'AI Governance Framework',
-    description: 'Developed comprehensive policy recommendations for AI regulation across different sectors.',
-    technologies: ['Policy', 'AI', 'Governance'],
-  },
-  {
-    id: 3,
-    title: 'Predictive Analytics Model',
-    description: 'Built machine learning model for financial forecasting with 85% accuracy rate.',
-    technologies: ['Python', 'ML', 'Finance'],
-  },
-]
 
 export default function AcademicProjectsTab() {
   return (
@@ -30,19 +9,38 @@ export default function AcademicProjectsTab() {
       <RevealOnScroll>
         <div className="section-header">
           <span className="section-index">01</span>
-          <h2 className="section-title">Academic Projects</h2>
+          <h2 className="section-title">Research & Academic Work</h2>
           <div className="section-line" />
         </div>
       </RevealOnScroll>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {academicProjects.map((project, index) => (
+      <div className="space-y-6">
+        {academicProjectsData.map((project, index) => (
           <RevealOnScroll key={project.id} delay={index * 100}>
-            <ProjectCard
-              title={project.title}
-              description={project.description}
-              technologies={project.technologies}
-              index={index}
-            />
+            <div className="glass-card rounded-lg p-6 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-xl font-serif font-bold text-white flex-1">{project.title}</h3>
+                {project.grade && <span className="ml-4 px-3 py-1 bg-gradient-to-r from-primary-light to-accent rounded text-white text-sm font-bold">{project.grade}</span>}
+              </div>
+              <p className="text-gray-300 mb-4">{project.description}</p>
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, idx) => (
+                    <span key={idx} className="text-xs bg-primary-dark px-3 py-1 rounded-full text-gray-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                {project.downloadLink && (
+                  <a
+                    href={project.downloadLink}
+                    download
+                    className="px-4 py-2 bg-gradient-to-r from-primary-light to-accent text-white rounded hover:opacity-90 transition-opacity text-sm font-semibold"
+                  >
+                    📥 Download Paper
+                  </a>
+                )}
+              </div>
+            </div>
           </RevealOnScroll>
         ))}
       </div>

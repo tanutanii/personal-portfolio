@@ -3,24 +3,126 @@
     {
       "id": 1,
       "institution": "Indian Institute of Management (IIM) Indore",
-      "degree": "MBA in Business Administration",
-      "period": "2022 - 2024",
-      "details": [
-        "Focus on Finance, Strategy, and AI"
+      "degree": "BA (Foundation in Management)",
+      "period": "2026",
+      "majorElectives": [
+        "Generative AI and NLP",
+        "Financial Accounting",
+        "Power and Dispute in Global Governance",
+        "Web Development",
+        "Algorithmic Paradigms For Problem Solving",
+        "Research Methodology",
+        "Six Sigma (GB)",
+        "Thinking in Complexity",
+        "International Trade",
+        "Cause & Effect",
+        "Digital Transformation and Industry 4.0",
+        "Law",
+        "Python",
+        "Java",
+        "Public Economics"
       ]
+    },
+    {
+      "id": 2,
+      "institution": "Tagore International School Vasant Vihar, New Delhi",
+      "degree": "Class XII, CBSE",
+      "period": "2023",
+      "percentage": "92.80%"
+    },
+    {
+      "id": 3,
+      "institution": "Tagore International School Vasant Vihar, New Delhi",
+      "degree": "Class X, CBSE",
+      "period": "2021",
+      "percentage": "90.60%"
     }
   ],
   "experience": [
     {
       "id": 1,
-      "company": "Edelman Intelligence",
-      "position": "Senior Consultant",
-      "period": "2021 - 2022",
-      "description": "Led market entry strategy analysis for Fortune 500 clients",
+      "company": "Edelman, Gurugram",
+      "position": "Intern - Public & Govt. Affairs Dept.",
+      "period": "Apr '25 – June '25",
       "highlights": [
-        "Led market entry strategy analysis for Fortune 500 clients",
-        "Conducted competitive intelligence across 8+ markets",
-        "Developed pricing strategies for B2B SaaS companies"
+        "Conducted research on state investment policies to identify 50+ FII clients in EV and semiconductors",
+        "Authored a strategic report on India's battery recycling, analysing regulatory frameworks and the circular economy",
+        "Synthesized investment data from summits like Davos to guide multinationals through India's regulatory landscape"
+      ]
+    },
+    {
+      "id": 2,
+      "company": "Insurance Australia Group",
+      "position": "Consultancy Intern",
+      "period": "Sept '24 – Oct '24",
+      "highlights": [
+        "Conducted global and NZ-specific market research on EV battery recycling, evaluating economic and environmental cost-efficiencies against traditional mining",
+        "Assessed impact on auto insurance and repair methodologies"
+      ]
+    }
+  ],
+  "positionsOfResponsibility": [
+    {
+      "id": 1,
+      "role": "Vice President, IPM Entrepreneurship Cell",
+      "organization": "IIM Indore",
+      "period": "Apr '25 - Apr '26",
+      "highlights": [
+        "Spearheaded corporate outreach with 25+ organizations to unlock 60+ internships generating ₹6 Lakh+ in IPM student stipends",
+        "Organized 5+ national case competitions",
+        "Raised ₹40,000 to launch a student-led social venture"
+      ]
+    },
+    {
+      "id": 2,
+      "role": "Founding Secretary, IPM Corporate Interaction Cell",
+      "organization": "IIM Indore",
+      "period": "Dec '25 - Apr '26",
+      "highlights": [
+        "Institutionalised and established a new placement process for post-UG internships in IPM",
+        "Built extensive corporate relations leveraging existing and new alumni networks"
+      ]
+    },
+    {
+      "id": 3,
+      "role": "Co-Coordinator, Logistics and Operations, Atharv Ranbhoomi '24",
+      "organization": "IIM Indore",
+      "period": "May '24 - Nov '24",
+      "highlights": [
+        "Optimized a budget of 7+ lakhs by negotiating and onboarding 5+ vendors",
+        "Coordinated with 12+ teams for seamless logistical execution of 35+ events under Central India's largest cultural and sports fest",
+        "Negotiated with stakeholders, including district administration and 15+ institute offices"
+      ]
+    },
+    {
+      "id": 4,
+      "role": "Junior Core, IPM Cultural Club",
+      "organization": "IIM Indore",
+      "period": "Oct '23 - Apr '24",
+      "highlights": [
+        "Organized and managed social events for 500+ IIM students",
+        "Coordinated 20+ events through negotiations with 10+ committees and vendors"
+      ]
+    },
+    {
+      "id": 5,
+      "role": "Cultural Captain, Student Council",
+      "organization": "Tagore International School",
+      "period": "June '21 – Mar '23",
+      "highlights": [
+        "Organized 30+ inter-house, 5 inter-school, and 4 national events",
+        "Oversaw 32 council members"
+      ]
+    },
+    {
+      "id": 6,
+      "role": "President, Project Saksham – Social Initiative for People with Intellectual Disabilities",
+      "organization": "Tagore International School",
+      "period": "Apr '19 – Apr '22",
+      "highlights": [
+        "Founded and led a 40-member social initiative promoting sensitization and inclusivity for intellectual disabilities",
+        "Spearheaded youth activation programs across schools in India, Taiwan, Afghanistan, and Zambia",
+        "Raised over ₹5 Lakh to support physically and intellectually challenged individuals"
       ]
     }
   ],
@@ -43,14 +145,5 @@
       { "name": "Problem Solving", "proficiency": 92 },
       { "name": "Data Analysis", "proficiency": 88 }
     ]
-  },
-  "leadership": [
-    {
-      "id": 1,
-      "role": "President",
-      "organization": "Investment Club, IIM Indore",
-      "period": "2023 - 2024",
-      "description": "Managed investment portfolio and organized quarterly case competitions"
-    }
-  ]
+  }
 }
