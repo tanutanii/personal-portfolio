@@ -46,7 +46,7 @@ export default function Hero() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
 
-  const tagline = 'Exploring AI, Policy and Finance | IIM Indore'
+  const tagline = 'Learning fast and building faster.'
 
   useEffect(() => {
     setDimensions({ w: window.innerWidth, h: window.innerHeight })
@@ -113,9 +113,8 @@ export default function Hero() {
               </p>
             </div>
 
-            <p className="text-lg text-gray-400 leading-relaxed max-w-md hero-slide-in-delay-3">
-              PE/VC focused analyst passionate about AI applications in finance and policy.
-              Building conviction through data-driven insights and strategic thinking.
+            <p className="text-lg text-gray-400 leading-relaxed max-w-2xl hero-slide-in-delay-3">
+              As a high-agency generalist, I sit right at the crossover of business strategy and emerging tech. I study the macro side of markets, policy, and growth, but my hands-on approach means I also know my way around modern-day AI tools and coding. I want to bring this relentless drive to PE/VC or a high-growth startup to help spot winning products, shape their strategy, and drive scale. If a project requires a skill I don't have yet, I'll learn it by tomorrow.
             </p>
 
             <div className="flex gap-4 flex-wrap hero-slide-in-delay-4">

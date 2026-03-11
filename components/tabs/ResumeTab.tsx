@@ -20,30 +20,8 @@ function TimelineItem({ children }: { children: React.ReactNode }) {
   )
 }
 
-function SkillBar({ name, level }: { name: string; level: number }) {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 })
-
-  return (
-    <div ref={ref} className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm text-gray-300">{name}</span>
-        <span className="text-xs text-gray-500">{level}%</span>
-      </div>
-      <div className="h-2 bg-primary-dark rounded-full overflow-hidden">
-        <div
-          className="skill-bar-fill h-full rounded-full"
-          style={{
-            width: isVisible ? `${level}%` : '0%',
-            transition: 'width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
-          }}
-        />
-      </div>
-    </div>
-  )
-}
-
 export default function ResumeTab() {
-  const { education, experience, skills, positionsOfResponsibility } = resumeData
+  const { education, experience, positionsOfResponsibility } = resumeData
   const [expandedElectives, setExpandedElectives] = useState(false)
   const [expandedPositions, setExpandedPositions] = useState(false)
 
@@ -138,25 +116,6 @@ export default function ResumeTab() {
               </ul>
             </TimelineItem>
           ))}
-        </div>
-      </RevealOnScroll>
-
-      {/* Skills - Animated Bars */}
-      <RevealOnScroll delay={200}>
-        <h3 className="text-3xl font-serif font-bold text-gradient-animated mb-6">Skills</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="glass-card rounded-lg p-6">
-            <h4 className="font-serif font-bold text-white mb-4">Technical</h4>
-            {skills.technical.map((skill) => (
-              <SkillBar key={skill.name} name={skill.name} level={skill.proficiency} />
-            ))}
-          </div>
-          <div className="glass-card rounded-lg p-6">
-            <h4 className="font-serif font-bold text-white mb-4">Soft Skills</h4>
-            {skills.soft.map((skill) => (
-              <SkillBar key={skill.name} name={skill.name} level={skill.proficiency} />
-            ))}
-          </div>
         </div>
       </RevealOnScroll>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface TabNavProps {
   activeTab: 'resume' | 'academic' | 'live' | 'showcase'
@@ -11,6 +11,22 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
   const [isSticky, setIsSticky] = useState(false)
   const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 })
   const tabsRef = useRef<Record<string, HTMLButtonElement | null>>({})
+  const navTrackRef = useRef<HTMLDivElement>(null)
+
+  const updateUnderline = useCallback(() => {
+    const activeButton = tabsRef.current[activeTab]
+    const navTrack = navTrackRef.current
+
+    if (!activeButton || !navTrack) return
+
+    const buttonRect = activeButton.getBoundingClientRect()
+    const trackRect = navTrack.getBoundingClientRect()
+
+    setUnderlineStyle({
+      left: buttonRect.left - trackRect.left + navTrack.scrollLeft,
+      width: buttonRect.width,
+    })
+  }, [activeTab])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,17 +38,18 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
   }, [])
 
   useEffect(() => {
-    const activeButton = tabsRef.current[activeTab]
-    if (activeButton) {
-      const parent = activeButton.parentElement
-      if (parent) {
-        setUnderlineStyle({
-          left: activeButton.offsetLeft - parent.offsetLeft,
-          width: activeButton.offsetWidth,
-        })
-      }
+    updateUnderline()
+
+    const navTrack = navTrackRef.current
+
+    window.addEventListener('resize', updateUnderline)
+    navTrack?.addEventListener('scroll', updateUnderline)
+
+    return () => {
+      window.removeEventListener('resize', updateUnderline)
+      navTrack?.removeEventListener('scroll', updateUnderline)
     }
-  }, [activeTab])
+  }, [updateUnderline])
 
   const tabs = [
     { id: 'resume', label: 'Resume' },
@@ -50,7 +67,7 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="relative flex gap-1 md:gap-6 overflow-x-auto py-3">
+        <div ref={navTrackRef} className="relative flex gap-1 md:gap-6 overflow-x-auto py-3">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -68,7 +85,7 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
 
           {/* Animated underline */}
           <div
-            className="absolute bottom-2.5 h-px bg-accent"
+            className="absolute bottom-2.5 h-px bg-accent pointer-events-none"
             style={{
               left: underlineStyle.left,
               width: underlineStyle.width,
