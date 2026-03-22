@@ -15,9 +15,6 @@ export default function Footer() {
             <h3 className="text-2xl font-semibold text-white tracking-tight mb-2">
               {siteConfig.name}
             </h3>
-            <p className="text-sm text-gray-500 leading-relaxed max-w-sm">
-              PE/VC analyst exploring AI, policy, and finance.
-            </p>
           </div>
 
           {/* Links - spans 3 cols */}

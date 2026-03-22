@@ -15,16 +15,11 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
 
   const updateUnderline = useCallback(() => {
     const activeButton = tabsRef.current[activeTab]
-    const navTrack = navTrackRef.current
-
-    if (!activeButton || !navTrack) return
-
-    const buttonRect = activeButton.getBoundingClientRect()
-    const trackRect = navTrack.getBoundingClientRect()
+    if (!activeButton) return
 
     setUnderlineStyle({
-      left: buttonRect.left - trackRect.left + navTrack.scrollLeft,
-      width: buttonRect.width,
+      left: activeButton.offsetLeft,
+      width: activeButton.offsetWidth,
     })
   }, [activeTab])
 
@@ -85,7 +80,7 @@ export default function TabNav({ activeTab, setActiveTab }: TabNavProps) {
 
           {/* Animated underline */}
           <div
-            className="absolute bottom-2.5 h-px bg-accent pointer-events-none"
+            className="absolute bottom-0 h-px bg-accent pointer-events-none"
             style={{
               left: underlineStyle.left,
               width: underlineStyle.width,

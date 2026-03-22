@@ -125,25 +125,5 @@
         "Raised over ₹5 Lakh to support physically and intellectually challenged individuals"
       ]
     }
-  ],
-  "skills": {
-    "technical": [
-      { "name": "Python", "proficiency": 90 },
-      { "name": "SQL", "proficiency": 85 },
-      { "name": "Excel", "proficiency": 95 },
-      { "name": "Tableau", "proficiency": 80 },
-      { "name": "R", "proficiency": 70 },
-      { "name": "JavaScript", "proficiency": 75 },
-      { "name": "React", "proficiency": 80 },
-      { "name": "Next.js", "proficiency": 75 }
-    ],
-    "soft": [
-      { "name": "Leadership", "proficiency": 90 },
-      { "name": "Strategic Thinking", "proficiency": 95 },
-      { "name": "Communication", "proficiency": 90 },
-      { "name": "Negotiation", "proficiency": 85 },
-      { "name": "Problem Solving", "proficiency": 92 },
-      { "name": "Data Analysis", "proficiency": 88 }
-    ]
-  }
+  ]
 }

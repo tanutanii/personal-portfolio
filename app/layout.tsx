@@ -4,7 +4,7 @@ import CursorSpotlight from '@/components/CursorSpotlight'
 
 const metadata: Metadata = {
   title: 'Tanish Chaudhary - Personal Portfolio',
-  description: 'Exploring AI, Policy and Finance | IIM Indore',
+  description: 'Learning fast and building faster',
   viewport: 'width=device-width, initial-scale=1',
 }
 

@@ -3,12 +3,25 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { useMousePosition } from '@/hooks/useMousePosition'
+import siteConfig from '@/data/site-config.json'
 
-function MagneticButton({ children, className }: { children: React.ReactNode; className: string }) {
-  const ref = useRef<HTMLButtonElement>(null)
+function MagneticButton({
+  children,
+  className,
+  href,
+  target,
+  rel,
+}: {
+  children: React.ReactNode
+  className: string
+  href?: string
+  target?: string
+  rel?: string
+}) {
+  const ref = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
@@ -24,18 +37,40 @@ function MagneticButton({ children, className }: { children: React.ReactNode; cl
 
   return (
     <div onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="inline-block p-4 -m-4">
-      <button
-        ref={ref}
-        className={className}
-        style={{
-          transform: `translate(${offset.x}px, ${offset.y}px)`,
-          transition: offset.x === 0 && offset.y === 0
-            ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
-            : 'transform 0.15s ease-out',
-        }}
-      >
-        {children}
-      </button>
+      {href ? (
+        <a
+          ref={(el) => {
+            ref.current = el
+          }}
+          href={href}
+          target={target}
+          rel={rel}
+          className={`${className} inline-block`}
+          style={{
+            transform: `translate(${offset.x}px, ${offset.y}px)`,
+            transition: offset.x === 0 && offset.y === 0
+              ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+              : 'transform 0.15s ease-out',
+          }}
+        >
+          {children}
+        </a>
+      ) : (
+        <button
+          ref={(el) => {
+            ref.current = el
+          }}
+          className={className}
+          style={{
+            transform: `translate(${offset.x}px, ${offset.y}px)`,
+            transition: offset.x === 0 && offset.y === 0
+              ? 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+              : 'transform 0.15s ease-out',
+          }}
+        >
+          {children}
+        </button>
+      )}
     </div>
   )
 }
@@ -46,7 +81,8 @@ export default function Hero() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
 
-  const tagline = 'Learning fast and building faster.'
+  const tagline = '> Exploring AI, Strategy, and how things get built.'
+  const linkedInUrl = siteConfig.social.find((link) => link.name.toLowerCase() === 'linkedin')?.url || '#'
 
   useEffect(() => {
     setDimensions({ w: window.innerWidth, h: window.innerHeight })
@@ -114,14 +150,24 @@ export default function Hero() {
             </div>
 
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl hero-slide-in-delay-3">
-              As a high-agency generalist, I sit right at the crossover of business strategy and emerging tech. I study the macro side of markets, policy, and growth, but my hands-on approach means I also know my way around modern-day AI tools and coding. I want to bring this relentless drive to PE/VC or a high-growth startup to help spot winning products, shape their strategy, and drive scale. If a project requires a skill I don't have yet, I'll learn it by tomorrow.
+              I am a high-agency builder operating right where business strategy meets emerging tech. While I focus on the big picture of markets, policy, and growth, my real edge is that I build things myself. Driven by pure curiosity, I know my way around modern AI tools and coding. I want to bring this hands-on perspective to PE/VC or a founder&apos;s office to spot great products, figure out the strategy, and help scale them. If there&apos;s a new skill needed to get it done, I&apos;ll learn it by tomorrow.
             </p>
 
-            <div className="flex gap-4 flex-wrap hero-slide-in-delay-4">
-              <MagneticButton className="btn-primary px-8 py-3 bg-accent text-primary-dark font-semibold rounded-lg">
+            <div className="flex gap-4 flex-wrap hero-slide-in-delay-5">
+              <MagneticButton
+                href="/resume-tanish-chaudhary.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-8 py-3 bg-accent text-primary-dark font-semibold rounded-lg"
+              >
                 View Resume
               </MagneticButton>
-              <MagneticButton className="btn-secondary px-8 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-primary-dark">
+              <MagneticButton
+                href={linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary px-8 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-primary-dark"
+              >
                 Contact
               </MagneticButton>
             </div>

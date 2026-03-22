@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import resumeData from '@/data/resume.json'
 import RevealOnScroll from '@/components/RevealOnScroll'
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
@@ -23,7 +23,47 @@ function TimelineItem({ children }: { children: React.ReactNode }) {
 export default function ResumeTab() {
   const { education, experience, positionsOfResponsibility } = resumeData
   const [expandedElectives, setExpandedElectives] = useState(false)
-  const [expandedPositions, setExpandedPositions] = useState(false)
+  const [expandedOrganization, setExpandedOrganization] = useState<string | null>(null)
+
+  const getYearsFromPeriod = (period: string) => {
+    const matches = period.match(/\d{2,4}/g) || []
+    return matches.map((value) => {
+      const year = Number(value)
+      if (Number.isNaN(year)) return 0
+      return year < 100 ? 2000 + year : year
+    }).filter((year) => year > 0)
+  }
+
+  const groupedPositions = useMemo(() => {
+    const groups = positionsOfResponsibility.reduce<Record<string, typeof positionsOfResponsibility>>((acc, position) => {
+      if (!acc[position.organization]) {
+        acc[position.organization] = []
+      }
+      acc[position.organization].push(position)
+      return acc
+    }, {})
+
+    return Object.entries(groups)
+      .map(([organization, roles]) => {
+        const sortedRoles = [...roles].sort((a, b) => {
+          const aYears = getYearsFromPeriod(a.period)
+          const bYears = getYearsFromPeriod(b.period)
+          return (Math.max(...bYears, 0) - Math.max(...aYears, 0))
+        })
+
+        const allYears = sortedRoles.flatMap((role) => getYearsFromPeriod(role.period))
+        const minYear = allYears.length ? Math.min(...allYears) : null
+        const maxYear = allYears.length ? Math.max(...allYears) : null
+
+        return {
+          organization,
+          roles: sortedRoles,
+          durationLabel: minYear && maxYear ? `${minYear} - ${maxYear}` : 'Duration unavailable',
+          sortKey: maxYear || 0,
+        }
+      })
+      .sort((a, b) => b.sortKey - a.sortKey)
+  }, [positionsOfResponsibility])
 
   return (
     <div className="space-y-12">
@@ -68,31 +108,42 @@ export default function ResumeTab() {
 
           {/* Positions of Responsibility Dropdown */}
           <div className="glass-card rounded-lg p-6">
-            <button
-              onClick={() => setExpandedPositions(!expandedPositions)}
-              className="flex items-center gap-2 text-xl font-serif font-bold text-white hover:text-gray-300 transition-colors w-full"
-            >
-              <span>🎖️ Positions of Responsibility</span>
-              <span className={`transform transition-transform ml-auto ${expandedPositions ? 'rotate-180' : ''}`}>
-                ▼
-              </span>
-            </button>
-            {expandedPositions && (
-              <div className="mt-4 space-y-4">
-                {positionsOfResponsibility.map((pos) => (
-                  <div key={pos.id} className="border-l-2 border-primary-light/50 pl-4 pb-4">
-                    <h5 className="font-serif font-bold text-white">{pos.role}</h5>
-                    <p className="text-sm text-gray-400">{pos.organization}</p>
-                    <p className="text-xs text-gray-500">{pos.period}</p>
-                    <ul className="mt-2 list-disc list-inside text-gray-400 space-y-1">
-                      {pos.highlights.map((highlight, idx) => (
-                        <li key={idx} className="text-sm">{highlight}</li>
-                      ))}
-                    </ul>
+            <h4 className="text-xl font-serif font-bold text-white mb-4">🎖️ Positions of Responsibility</h4>
+            <div className="space-y-3">
+              {groupedPositions.map((group) => {
+                const isOpen = expandedOrganization === group.organization
+                return (
+                  <div key={group.organization} className="border border-primary-light/20 rounded">
+                    <button
+                      onClick={() => setExpandedOrganization(isOpen ? null : group.organization)}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-primary-dark/50 transition-colors"
+                    >
+                      <span className="font-serif font-semibold text-white">{group.organization}</span>
+                      <span className="mono text-xs text-gray-400 ml-auto">{group.durationLabel}</span>
+                      <span className={`transform transition-transform text-gray-400 ${isOpen ? 'rotate-180' : ''}`}>
+                        ▼
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-4 pb-4 space-y-4">
+                        {group.roles.map((pos) => (
+                          <div key={pos.id} className="border-l-2 border-primary-light/50 pl-4">
+                            <h5 className="font-serif font-bold text-white">{pos.role}</h5>
+                            <p className="text-xs text-gray-500">{pos.period}</p>
+                            <ul className="mt-2 list-disc list-inside text-gray-400 space-y-1">
+                              {pos.highlights.map((highlight, idx) => (
+                                <li key={idx} className="text-sm">{highlight}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                ))}
-              </div>
-            )}
+                )
+              })}
+            </div>
           </div>
         </div>
       </RevealOnScroll>
